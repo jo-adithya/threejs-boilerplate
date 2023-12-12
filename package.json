@@ -1,0 +1,24 @@
+{
+  "name": "app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/events": "^3.0.3",
+    "@types/three": "^0.159.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.0",
+    "vite-tsconfig-paths": "^4.2.2"
+  },
+  "dependencies": {
+    "events": "^3.3.0",
+    "lil-gui": "^0.19.1",
+    "three": "^0.159.0",
+    "vite-plugin-glsl": "^1.2.1"
+  }
+}
