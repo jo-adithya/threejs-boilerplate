@@ -22,8 +22,6 @@
     /* Paths */
     "paths": {
       "@app/*": ["./src/*"],
-      "types": ["./src/types/index.ts"],
-      "Experience": ["./src/main/Experience.ts"]
     }
   },
   "include": ["src"]

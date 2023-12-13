@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-import { Experience } from "Experience";
+import { Experience } from "@app/core";
 
 export abstract class CustomMesh extends THREE.Mesh {
   protected experience = Experience.getInstance();

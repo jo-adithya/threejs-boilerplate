@@ -1,7 +1,7 @@
-import { Experience } from "Experience";
+import { Experience } from "@app/core";
+import { CustomMesh } from "@app/interfaces";
 
 import { Environment } from "./Environment";
-import { CustomMesh } from "@app/interfaces";
 
 export class World {
   private readonly experience = Experience.getInstance();

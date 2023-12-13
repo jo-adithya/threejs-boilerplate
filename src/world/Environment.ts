@@ -1,5 +1,6 @@
 import * as THREE from "three";
-import { Experience } from "Experience";
+
+import { Experience } from "@app/core";
 
 export class Environment {
   private readonly experience = Experience.getInstance();

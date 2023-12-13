@@ -1,4 +1,4 @@
-import { Resources, ResourceType } from "types";
+import { Resources, ResourceType } from "@app/types";
 
 /**
  * @description List of resources that will be loaded by the `ResourceManager`.

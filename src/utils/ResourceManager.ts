@@ -3,10 +3,8 @@ import { GLTFLoader, GLTF } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 import { EventEmitter } from "events";
 
-import { ResourceName } from "@app/data/resources";
-import resources, { ResourceGroup } from "@app/data/resources";
-
-import { ResourceType, ResourceFileType } from "types";
+import resources, { ResourceGroup, ResourceName } from "@app/data/resources";
+import { ResourceType, ResourceFileType } from "@app/types";
 
 export class ResourceManager extends EventEmitter {
   resources: {

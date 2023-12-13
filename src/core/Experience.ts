@@ -1,7 +1,7 @@
 import * as THREE from "three";
 
 import { Sizes, Time, ResourceManager, Debug } from "@app/utils";
-import { World } from "@app/world/World";
+import { World } from "@app/world";
 
 import { Camera } from "./Camera";
 import { Renderer } from "./Renderer";
