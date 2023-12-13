@@ -1,5 +1,6 @@
 import * as THREE from "three";
 
+import { disposeMesh } from "@app/helpers";
 import { Sizes, Time, ResourceManager, Debug } from "@app/utils";
 import { World } from "@app/world";
 
@@ -19,28 +20,19 @@ export class Experience extends THREE.Scene {
   readonly time = new Time();
   readonly resourceManager = new ResourceManager();
 
-  // Addons
-  readonly axesHelper: THREE.AxesHelper;
-
   readonly world: World;
 
   private constructor(readonly canvas: HTMLCanvasElement) {
     super();
     Experience.instance = this;
+    window.experience = this; // For debugging purposes
 
-    // Global access
-    window.experience = this;
-
-    // Main
     this.camera = new Camera();
     this.renderer = new Renderer(canvas);
-
-    // Axes Helper
-    this.axesHelper = new THREE.AxesHelper(1);
-    this.add(this.axesHelper);
-
-    // World
     this.world = new World();
+    this.add(new THREE.AxesHelper(5)); // For debugging purposes
+
+    this.bindEventListeners();
   }
 
   public static getInstance(canvas?: HTMLCanvasElement) {
@@ -51,16 +43,36 @@ export class Experience extends THREE.Scene {
     return Experience.instance;
   }
 
-  onWindowResize() {
-    this.sizes.onWindowResize();
+  private bindEventListeners() {
+    this.sizes.on("resize", this.onWindowResize.bind(this));
+    this.time.on("tick", this.update.bind(this));
+  }
+
+  private onWindowResize() {
     this.camera.onWindowResize();
     this.renderer.onWindowResize();
   }
 
-  update() {
-    this.time.update();
+  private update() {
     this.camera.update();
     this.world.update();
     this.renderer.update();
+  }
+
+  destroy() {
+    // Remove listerners
+    this.sizes.off("resize", this.onWindowResize.bind(this));
+    this.time.off("tick", this.update.bind(this));
+
+    this.camera.controls?.dispose();
+    this.renderer.dispose();
+
+    this.traverse((child) => {
+      if (!(child instanceof THREE.Mesh)) return;
+      disposeMesh(child);
+    });
+
+    if (!this.debug.active) return;
+    this.debug.gui?.destroy();
   }
 }
