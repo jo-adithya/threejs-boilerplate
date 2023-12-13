@@ -13,7 +13,7 @@ export class World {
     if (this.resourceManager.ready) {
       this.setupWorld();
     } else {
-      this.resourceManager.once("ready", this.setupWorld.bind(this));
+      this.resourceManager.once("ready", () => this.setupWorld());
     }
   }
 

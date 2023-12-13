@@ -9,7 +9,7 @@ export class Sizes extends EventEmitter {
     super();
 
     this.onWindowResize();
-    window.addEventListener("resize", this.onWindowResize.bind(this));
+    window.addEventListener("resize", () => this.onWindowResize());
   }
 
   private onWindowResize() {

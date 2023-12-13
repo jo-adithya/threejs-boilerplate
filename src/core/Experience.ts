@@ -44,8 +44,8 @@ export class Experience extends THREE.Scene {
   }
 
   private bindEventListeners() {
-    this.sizes.on("resize", this.onWindowResize.bind(this));
-    this.time.on("tick", this.update.bind(this));
+    this.sizes.on("resize", () => this.onWindowResize());
+    this.time.on("tick", () => this.update());
   }
 
   private onWindowResize() {
@@ -61,8 +61,8 @@ export class Experience extends THREE.Scene {
 
   destroy() {
     // Remove listerners
-    this.sizes.off("resize", this.onWindowResize.bind(this));
-    this.time.off("tick", this.update.bind(this));
+    this.sizes.off("resize", () => this.onWindowResize());
+    this.time.off("tick", () => this.update());
 
     this.camera.controls?.dispose();
     this.renderer.dispose();

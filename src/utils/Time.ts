@@ -14,7 +14,7 @@ export class Time extends EventEmitter {
     this.elapsed = 0;
     this.delta = 16;
 
-    window.requestAnimationFrame(this.update.bind(this));
+    window.requestAnimationFrame(() => this.update());
   }
 
   private update() {
@@ -24,6 +24,6 @@ export class Time extends EventEmitter {
     this.elapsed = this.current - this.start;
 
     this.emit("tick");
-    window.requestAnimationFrame(this.update.bind(this));
+    window.requestAnimationFrame(() => this.update());
   }
 }
