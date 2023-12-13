@@ -1,12 +1,15 @@
 import { Experience } from "Experience";
 
 import { Environment } from "./Environment";
+import { CustomMesh } from "@app/interfaces";
 
 export class World {
   private readonly experience = Experience.getInstance();
   private readonly resourceManager = this.experience.resourceManager;
+  private readonly meshes: CustomMesh[] = [];
 
   constructor() {
+    // Check if all resources are loaded
     if (this.resourceManager.ready) {
       this.setupWorld();
     } else {
@@ -16,9 +19,11 @@ export class World {
 
   setupWorld() {
     new Environment();
+    const meshes: CustomMesh[] = [];
+    this.meshes.push(...meshes);
   }
 
   update() {
-    // Update all objects in the world
+    this.meshes.forEach((mesh) => mesh.update());
   }
 }
